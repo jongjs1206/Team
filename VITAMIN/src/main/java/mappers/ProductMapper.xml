@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+
+	<insert parameterType="list" id="insertproductoption">
+
+		<!-- <foreach item="list" collection="list" separator=" ; " > -->
+		<!-- insert into productOptions (po_optionnum,p_num,po_optionname,po_optionstock,po_addprice) 
+			values(SEQ_po_optionNum_productOp.nextval,#{list.p_num},#{list.po_optionname},#{list.po_optionstock},#{list.po_addprice}) -->
+		<!-- </foreach>) -->
+		insert into
+		productOptions(po_optionnum,p_num,po_optionname,po_optionstock,po_addprice)
+		select SEQ_po_optionNum_productOp.nextval, A.* from(
+		<foreach separator="UNION ALL " collection="list" item="list"
+			index="index">select #{list.p_num} as p_num ,#{list.po_optionname} as po_optionname ,#{list.po_optionstock} as po_optionstock ,#{list.po_addprice} as po_addprice from dual 
+		</foreach>
+		) A
+	</insert>
+	
+		<delete parameterType="list" id = "deletesubimage">
+		
+		DELETE FROM img 
+		<where> 
+		<foreach collection="list" item="item" open="" close="" separator="OR"> 
+		(i_imgpath = #{item}) 
+		</foreach> 
+		</where>
+
+	</delete>
+	<delete parameterType = "string" id = "onedeloptions">
+		DELETE FROM productoptions WHERE p_num = #{item}
+	</delete>
+	
+	<update parameterType = "product" id = "updateproductval">
+	UPDATE product SET p_name = #{p_name},p_costprice = #{p_costprice},p_discountrate = #{p_discountrate}, p_sellprice = #{p_sellprice}, p_stock= #{p_stock}, p_content = #{p_content} , ca_smallcate = #{ca_smallcate} WHERE p_num = #{p_num}
+	
+	</update>
+	
+	<insert parameterType="hashmap" id="insertsubimage">
+		insert into img(i_num,i_imgpath,p_num) select SEQ_i_num_img.nextval,
+		A.* from(
+		<foreach separator="UNION ALL " collection="list" item="item">select
+			#{item} as i_imgpath ,#{vo.p_num} as p_num from dual</foreach>
+		) A
+		<!-- <foreach collection = "list" item="item" index="index" separator=";" 
+			> -->
+		<!-- insert into img(i_num,i_imgpath,p_num) values (SEQ_i_num_img.nextval,#{item},'1003') -->
+		<!-- </foreach> -->
+		<!-- insert into img(i_num,i_imgpath,p_num) values (SEQ_i_num_img.nextval,'존나화난다.',#{vo.p_num}); -->
+	</insert>
+
+	<insert parameterType="product" id="insertproduct">
+		<selectKey resultType="java.lang.String" order="BEFORE"
+			keyProperty="p_num">SELECT SEQ_p_num_product.nextval FROM DUAL </selectKey>
+		INSERT INTO
+		product(p_num,p_name,p_costprice,p_discountrate,p_sellprice,p_postdate,p_content,p_stock,p_mainimage,ca_smallcate)VALUES
+		(#{p_num},#{p_name},#{p_costprice},#{p_discountrate},#{p_sellprice},sysdate,#{p_content},#{p_stock},#{p_mainimage},#{ca_smallcate})
+	</insert>
+
+	<select id="categoryget" parameterType="string"
+		resultType="string">
+		<!-- SELECT * -->
+		<!-- FROM USERTABLE -->
+		<!-- WHERE u_id = #{u_id} AND u_pass = #{u_pass} -->
+		select ca_smallcate from category where ca_largecate = #{largecate}
+	</select>
+
+	<select id='goodslist' resultType="product">
+		select p_num,p_name,p_costprice,p_discountrate,p_sellprice,p_postdate 
+		,p_content,p_stock,p_mainimage,ca_smallcate 
+		from( select rownum as rnum,p_num,p_name,p_costprice,p_discountrate,p_sellprice,p_postdate,p_content,p_stock,p_mainimage,ca_smallcate 
+ from(select * from product where ca_smallcate = #{ca_smallcate} order by
+ 
+		<choose>
+			<when test='p_content=="a"'>
+				p_name
+			</when>
+			<when test='p_content=="b"'>
+				p_sellprice
+			</when>
+			<when test='p_content=="c"'>
+				p_sellprice DESC
+			</when>
+			<otherwise>
+				p_postdate DESC
+			</otherwise>
+		</choose>
+		)) <![CDATA[ where rnum  >=  #{p_costprice} and rnum<= #{p_sellprice} ]]>
+	</select>
+	
+	<select id = "productlist" resultType="product">
+	select p_num,p_name,p_costprice,p_discountrate,p_sellprice,p_postdate 
+		,p_content,p_stock,p_mainimage,ca_smallcate 
+    	from product where ca_smallcate = #{ca_smallcate} order by p_num desc
+	</select>
+	
+
+	<select id='list' parameterType='category' resultType="category">
+		select p_num, p_name, 
+		p_costprice, p_sellprice,
+		p_discountrate,  p_postdate,
+		p_content, p_stock, ca_smallcate,
+		 p_mainimage,
+        ca_largecate from(select rownum as rnum, p_num, p_name, 
+		p_costprice, p_sellprice,
+		p_discountrate,  p_postdate,
+		p_content, p_stock, ca_smallcate,
+		 p_mainimage,
+        ca_largecate from(select p.p_num as p_num, p.p_name as p_name, p.p_costprice as
+		p_costprice, p.p_sellprice as p_sellprice, p.p_discountrate as
+		p_discountrate, p.p_postdate as p_postdate,
+		p.p_content as
+		p_content,p.p_stock as p_stock, p.ca_smallcate as ca_smallcate,
+		p.p_mainimage as p_mainimage, c.ca_smallcate as ca_smallcatee,
+		c.ca_largecate as ca_largecate
+		from product p inner join category c on
+		p.ca_smallcate = c.ca_smallcate
+		where c.ca_largecate = #{ca_largecate} order by <choose>
+			<when test='p_content=="a"'>
+				p_name
+			</when>
+			<when test='p_content=="b"'>
+				p_sellprice
+			</when>
+			<when test='p_content=="c"'>
+				p_sellprice DESC
+			</when>
+			<otherwise>
+				p_postdate DESC
+			</otherwise>
+		</choose>
+		)) <![CDATA[ where rnum  >=  #{p_costprice} and rnum<= #{p_sellprice} ]]>
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from product where
+		ca_smallcate = #{ca_smallcate}
+	</select>
+
+	<select id="count2" resultType="int">
+		select count(*) from product p
+		inner join category c on p.ca_smallcate =
+		c.ca_smallcate
+		where
+		c.ca_largecate = #{ca_largecate}
+	</select>
+	<select id="getfilepath" parameterType="int" resultType="string">
+		select i_imgpath from img where p_num = #{data}
+	</select>
+	
+	<delete id="deleteimage" parameterType="int">
+		DELETE FROM img WHERE p_num = #{data}
+	</delete>
+	<delete id="deleteoption" parameterType="int">
+		DELETE FROM productoptions WHERE p_num = #{data}
+	</delete>
+	<select id="getmainfilepath" parameterType="int" resultType="string">
+		select p_mainimage from product where p_num = #{data}
+	</select>
+	<delete id="deleteproduct" parameterType="int">
+		DELETE FROM product WHERE p_num = #{data}
+	</delete>
+	<select id="option" parameterType="int" resultType="option">
+	select * from productOptions where p_num=#{p_num}
+</select>
+
+<select id="goodview" parameterType="int" resultType="product">
+	select * from product where p_num=#{p_num}
+</select>
+<select id="subimage" parameterType="int" resultType="psimg">
+	select * from img where p_num= #{p_num} order by i_num
+</select>
+
+<select id="searchlist" parameterType="category" resultType="category">
+	select p_num, p_name, 
+		p_costprice, p_sellprice,
+		p_discountrate,  p_postdate,
+		p_content, p_stock, ca_smallcate,
+		 p_mainimage,
+        ca_largecate  from(select rownum as rnum,p_num, p_name, 
+		p_costprice, p_sellprice,
+		p_discountrate,  p_postdate,
+		p_content, p_stock, ca_smallcate,
+		 p_mainimage,
+        ca_largecate from(select p.p_num as p_num, p.p_name as p_name, p.p_costprice as
+		p_costprice, p.p_sellprice as p_sellprice, p.p_discountrate as
+		p_discountrate, p.p_postdate as p_postdate,
+		p.p_content as
+		p_content,p.p_stock as p_stock, p.ca_smallcate as ca_smallcate,
+		p.p_mainimage as p_mainimage, c.ca_smallcate as ca_smallcatee,
+		c.ca_largecate as ca_largecate  
+		from product p inner join category c on
+		p.ca_smallcate = c.ca_smallcate
+		where c.ca_largecate like '%${p_postdate}%' or c.ca_smallcate like '%${p_postdate}%'
+		 or p.p_name like '%${p_postdate}%' 
+		 order by <choose>
+			<when test='p_content=="a"'>
+				p_name
+			</when>
+			<when test='p_content=="b"'>
+				p_sellprice
+			</when>
+			<when test='p_content=="c"'>
+				p_sellprice DESC
+			</when>
+			<otherwise>
+				p_postdate DESC
+			</otherwise>
+		</choose>)) <![CDATA[ where rnum  >=  #{p_costprice} and rnum<= #{p_sellprice} ]]>
+		
+</select>
+
+<select id="searchcount" parameterType="category" resultType="int">
+		select count(*) as count from product p  
+		inner join category c on p.ca_smallcate =  
+		c.ca_smallcate  
+		where c.ca_largecate like '%${p_postdate}%' or c.ca_smallcate like '%${p_postdate}%'
+		 or p.p_name like '%${p_postdate}%'
+</select>
+
+<select id="orderlist" parameterType="category" resultType="category">
+		select o.o_num as o_num,u.u_id as u_id, u.u_name as u_name,p.p_name as p_name,po.po_optionname as po_optionname,
+o.o_tel as o_tel,o.o_add as o_add, o.o_date as o_date, o.o_delivery as o_delivery
+from orders o
+left join usertable u on o.u_id=u.u_id
+inner join product p on o.p_num=p.p_num
+left join productoptions po on o.po_optionnum=po.po_optionnum  
+
+		<choose>
+			<when test='ca_largecate==null'>
+			
+			</when>
+			<when test='ca_largecate.equals("전체")'>
+			where	u.u_name like'%${ca_smallcate}%'
+			</when>
+			<otherwise>
+			where	u.u_name like '%${ca_smallcate}%' and o.o_delivery=#{ca_largecate}
+			</otherwise>
+		</choose>
+order by o.o_date desc
+</select>
+	<update id = "changemainimage" parameterType = "product">
+	UPDATE product SET p_mainimage = #{p_mainimage} WHERE p_num = #{p_num}
+	</update>
+<select id="optioninfo" parameterType="string" resultType="option">
+	SELECT * FROM productoptions WHERE po_optionnum = #{po_optionnum}
+</select>
+
+<insert id="insertorder" parameterType="category">
+	insert into orders values(sq_orders.nextval,#{u_id},#{p_num},#{o_tel},#{o_add},#{o_count},'준비중',sysdate,#{o_price},#{po_optionnum},#{o_name} )
+</insert>
+
+<update id="supdategrade" parameterType="string">
+	update usertable set u_grade='SILVER',u_mileage=u_mileage+10000 where u_id=#{id}
+</update>
+<update id="gupdategrade" parameterType="string">
+	update usertable set u_grade='GOLD',u_mileage=u_mileage+30000 where u_id=#{id}
+</update>
+<update id="vupdategrade" parameterType="string">
+	update usertable set u_grade='VIP',u_mileage=u_mileage+50000 where u_id=#{id}
+</update>
+<update id="addmile" parameterType="category">
+	update usertable set u_mileage=u_mileage+#{o_price} where u_id=#{u_id}
+</update>
+<update id="submile" parameterType="category">
+	update usertable set u_mileage=u_mileage-#{u_mileage} where u_id=#{u_id}
+</update>
+</mapper>
+
+

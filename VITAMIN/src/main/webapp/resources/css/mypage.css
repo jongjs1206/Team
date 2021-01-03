@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+#contents {
+	color: black;
+	width: 1300px;
+	height :750px;
+	margin-left: 250px;
+}
+
+#myshopMain li {
+	list-style: none;
+	font: 0.75em "Noto Sans KR", Verdana, Dotum, AppleGothic, sans-serif;
+	color: #111;
+	list-style: none;
+	float: left;
+	width: 25%;
+	height: 265px;
+	margin: 50px 1% 20px 5%;
+	padding: 40px 15px;
+	border: 1px solid #e9e9e9;
+	box-sizing: border-box;
+	text-align: center;
+	cursor: pointer;
+}
+
+#myshopMain li:hover{
+	border: 1px solid #ff7d92;
+}
+
+#myshopMain li>img{
+	width : 60px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+#myshopMain {
+	text-align: center;
+	margin-top: 50px;
+}
+
+#myshopMain span {
+	font: 0.75em "Noto Sans KR", Verdana, Dotum, AppleGothic, sans-serif;
+	list-style: none;
+	font-size: 12px;
+	font-weight: normal;
+	color: #000;
+	display: block;
+	padding: 6px 0 0;
+}
+
+#myshopMain p {
+	font: 0.75em "Noto Sans KR", Verdana, Dotum, AppleGothic, sans-serif;
+	list-style: none;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 18px;
+	color: #8f8f8f;
+}

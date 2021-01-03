@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user_map">
+
+<select id="userLogin" parameterType="user" resultType="user">
+SELECT * 
+FROM USERTABLE 
+WHERE u_id = #{u_id} AND u_pass = #{u_pass}
+</select>
+
+<select id="allusersearch" resultType="user">
+SELECT * FROM USERTABLE
+</select>
+
+<select id="userSearch" parameterType="map" resultType="user">
+
+			SELECT * FROM USERTABLE where u_rank = #{rankselect} and u_grade = #{gradeselect}
+			<choose>
+			 <when test='keyselects.equals("NAME")'>
+			AND U_NAME LIKE '%' || #{accountsearch} || '%'
+			</when>
+			 <when test='keyselects.equals("ID")'>
+			AND U_ID LIKE '%' || #{accountsearch} || '%'
+			</when>
+			 </choose> 
+
+</select>
+
+<update id ="blackchange" parameterType="map">
+<choose>
+	<when test='blackstate.equals("N")'>
+	UPDATE usertable SET u_black = 'Y' where u_id = #{blackid}
+	</when>
+	<when test='blackstate.equals("Y")'>
+	UPDATE usertable SET u_black = 'N' where u_id = #{blackid}
+	</when>
+</choose>
+</update>
+
+<update id ="rankchange" parameterType="map">
+	UPDATE usertable SET u_rank = #{rankstate} where u_id = #{rankid}
+</update>
+
+<insert id="basketinsert" parameterType='category'>
+	INSERT INTO shoppingbasket 
+	values(sq_shoppingbasket.nextval,#{p_num},#{u_id},#{po_optionnum},#{s_count},sysdate)
+</insert>
+
+<select id="basketselect" parameterType='category' resultType='category'>
+	select * from shoppingbasket where u_id = #{u_id} order by s_date
+</select>
+
+<delete id="basketdelete" parameterType='string'>
+	delete from shoppingbasket where u_id = #{u_id}
+</delete>
+
+<select id="userpay" parameterType="string" resultType="string">
+	select sum(o_price) as sum from orders group by u_id having u_id=#{id}
+</select>
+
+<!-- 회원가입 -->
+<insert id="userJoin" parameterType="user">
+INSERT INTO USERTABLE(u_id,u_pass,u_name,u_tel,u_addr,u_idnum,u_height,u_weight,u_grade,u_rank,u_mileage,u_black) 
+VALUES(#{u_id}, #{u_pass}, #{u_name}, #{u_tel}, #{u_addr}, #{u_idnum}, #{u_height}, #{u_weight}, 'BRONZE', '일반', 1000, 'N')
+</insert>
+
+<!-- 회원정보 수정 -->
+<update id="userUpdate" parameterType="user">
+UPDATE USERTABLE SET 
+   u_pass = #{u_pass},
+   u_name = #{u_name},
+   u_tel = #{u_tel},
+   u_addr = #{u_addr},
+   u_idnum = #{u_idnum},
+   u_height = #{u_height},
+   u_weight = #{u_weight}
+   WHERE u_id = #{u_id}
+</update>
+
+<!-- 회원정보 조회 -->
+<select id ="getuserinfo" parameterType = "string" resultType = "user">
+SELECT * FROM USERTABLE 
+where u_id = #{u_id}
+</select>
+
+<!-- 회원탈퇴 -->
+<delete id="userDelete" parameterType="user">
+DELETE FROM USERTABLE
+WHERE u_id = #{u_id} AND u_pass = #{u_pass} 
+</delete>
+
+<!-- 회원 유지율 -->
+<update id="userKeepRate">
+UPDATE userkeeprate SET
+userdelcount = userdelcount+1
+</update>
+
+</mapper>

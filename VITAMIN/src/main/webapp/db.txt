@@ -1,0 +1,199 @@
+drop table usertable;
+--사용자 테이블
+create table usertable(
+    u_id 	VARCHAR2(12),
+    u_pass		VARCHAR2(20),
+    u_name		VARCHAR2(10),
+    u_tel		VARCHAR2(13),
+    u_addr		VARCHAR2(100),
+    u_idnum		VARCHAR2(14),
+    u_height	NUMBER(3,0),
+    u_weight	NUMBER(3,0),
+    u_grade		VARCHAR2(6),
+    u_rank		VARCHAR2(8),
+    u_mileage	NUMBER,
+    u_black		CHAR(1),
+    u_trainer	VARCHAR2(12),
+    CONSTRAINT pk_user_u_id PRIMARY KEY (u_id)
+);
+
+drop table product;
+drop table img;
+drop table productOptions;
+drop table category;
+
+-- 상품테이블 
+create table product(
+p_num NUMBER primary key,
+p_name VARCHAR2(100),
+p_costprice NUMBER,
+p_discountrate NUMBER,
+p_sellprice NUMBER,
+p_postdate date,
+p_content VARCHAR2(300),
+p_stock NUMBER,
+p_mainimage VARCHAR2(150),
+ca_smallcate VARCHAR2(20),
+CONSTRAINT fk_prod_smallcate FOREIGN  KEY (ca_smallcate)REFERENCES category(ca_smallcate) 
+);
+
+--카테고리 테이블
+create table category(
+ca_smallcate VARCHAR2(20) primary key,
+ca_largecate VARCHAR2(20)
+);
+
+--이미지 테이블
+create table img(
+i_num NUMBER primary key,
+p_num number ,
+i_imgpath VARCHAR2(150),
+CONSTRAINT fk_img_pNum FOREIGN  KEY (p_num)REFERENCES product(p_num) 
+);
+--상품 옵션 테이블 
+create table productOptions(
+po_optionNum NUMBER primary key,
+p_num number ,
+po_optionName VARCHAR2(150),
+po_optionstock NUMBER,
+po_addprice NUMBER,
+CONSTRAINT fk_pOption_pNum FOREIGN  KEY (p_num)REFERENCES product(p_num) 
+);
+
+--상품 테이블 시퀀스
+CREATE SEQUENCE SEQ_p_num_product;
+--이미지 테이블 시퀀스
+CREATE SEQUENCE SEQ_i_num_img;
+--상품옵션 테이블 시퀀스
+CREATE SEQUENCE SEQ_po_optionNum_productOp;
+
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('아령,덤벨','헬스용품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('케틀벨','헬스용품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('푸쉬업바/패럴켓바','헬스용품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('케이블머신','헬스용품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('밴드/로프','헬스용품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('웨이트볼','헬스용품');
+
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('폼롤러','요가/필라테스');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('밴드','요가/필라테스');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('짐볼','요가/필라테스');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('요가매트','요가/필라테스');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('밸런스운동','요가/필라테스');
+
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('보호장비','운동복');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('남성','운동복');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('여성','운동복');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('기타물품','운동복');
+
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('닭가슴살','건강식품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('간편한끼','건강식품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('도시락/샐러드','건강식품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('고구마/견과','건강식품');
+INSERT INTO category (CA_SMALLCATE,CA_LARGECATE) values('건강간식','건강식품');
+
+--장바구니
+drop table shoppingbasket;
+drop sequence sq_shoppingbasket;
+create table shoppingbasket(
+    s_num number PRIMARY KEY,
+    p_num number,
+    u_id varchar2(12),
+    po_optionNum number,
+    s_count number,
+    s_date date,
+    CONSTRAINT fk_shopptingbasket_u_id FOREIGN KEY (u_id) REFERENCES usertable (u_id),
+    CONSTRAINT fk_shopptingbasket_p_num FOREIGN KEY (p_num) REFERENCES product (p_num)
+);
+create sequence sq_shoppingbasket;
+
+--주문테이블
+create table orders(
+    o_num number PRIMARY KEY,
+    u_id varchar2(12),
+    p_num number,
+    o_tel varchar2(13),
+    o_add varchar2(100),
+    o_count number(5),
+    o_delivery varchar(8),
+    o_date date,
+    o_price number,
+    po_optionNum number,
+    o_name varchar(10),
+    CONSTRAINT fk_order_p_num FOREIGN KEY (p_num) REFERENCES product (p_num)
+);
+create sequence sq_orders;
+
+--식단
+CREATE TABLE diet(
+d_season varchar2(50), --시기
+d_num number, --넘버
+d_name varchar2(100), --이름
+d_type varchar2(50), --타입
+d_date date, --날짜
+d_calorie number --칼로리
+--CONSTRAINT fk_diet_u_id FOREIGN KEY (u_id) REFERENCES usertable (u_id)
+);
+--고도비만
+insert into diet values('',1,'샐러드 + 아몬드 + 두유','고도비만',sysdate,357);
+insert into diet values('',2,'빵한조각 + 바나나','고도비만',sysdate,236);
+insert into diet values('',3,'양배추 + 닭가슴살','고도비만',sysdate,334);
+insert into diet values('',4,'고구마 + 닭가슴살 + 채소','고도비만',sysdate,221);
+insert into diet values('',5,'콩밥 + 미역국 + 콩나물','고도비만',sysdate,378);
+--비만
+insert into diet values('',1,'고구마 + 바나나 + 토마토','비만',sysdate,334);
+insert into diet values('',2,'닭가슴살 + 브로콜리 + 우유','비만',sysdate,234);
+insert into diet values('',3,'계란 + 브로콜리 + 닭가슴살','비만',sysdate,345);
+insert into diet values('',4,'사과 + 견과류 + 토마토','비만',sysdate,234);
+insert into diet values('',5,'계란 + 고구마 + 닭가슴살','비만',sysdate,345);
+--과체중
+insert into diet values('',1,'빵 + 고기류 + 바나나','과체중',sysdate,345);
+insert into diet values('',2,'현미밥 + 두부 + 닭가슴살','과체중',sysdate,456);
+insert into diet values('',3,'계란 + 고구마 + 현미밥 + 반찬','과체중',sysdate,345);
+insert into diet values('',4,'견과류 + 닭가슴살 + 일반식','과체중',sysdate,456);
+insert into diet values('',5,'스파게트 + 고기류 + 우유','과체중',sysdate,345);
+--보통
+insert into diet values('',1,'견과류 + 바나나 + 스파게티','보통',sysdate,456);
+insert into diet values('',2,'닭가슴살 + 현미밥 + 계란','보통',sysdate,345);
+insert into diet values('',3,'계란 + 콩밥 + 닭가슴살','보통',sysdate,546);
+insert into diet values('',4,'야채샐러드 + 견과류 + 바나나','보통',sysdate,567);
+insert into diet values('',5,'현미밥 + 반찬 + 고구마','보통',sysdate,456);
+--저체중
+insert into diet values('',1,'오트밀 + 고기류 + 바나나 + 프로틴','저체중',sysdate,357);
+insert into diet values('',2,'현미밥 + 닭가슴살 + 고구마','저체중',sysdate,236);
+insert into diet values('',3,'고기류 + 감자 + 스파게트 + 우유','저체중',sysdate,334);
+insert into diet values('',4,'계란 + 닭가슴살 + 견과류 + 토마토','저체중',sysdate,221);
+insert into diet values('',5,'닭가슴살 볶음밥 + 계란말이 + 고구마','저체중',sysdate,378);
+
+--게시글 테이블
+CREATE TABLE board(
+	b_num NUMBER NOT NULL,
+    u_id VARCHAR2(12)    NOT NULL,
+    b_title VARCHAR2(100)     NOT NULL,
+    b_content VARCHAR2(300)  NOT NULL,
+    b_date DATE            DEFAULT SYSDATE,
+    PRIMARY KEY(b_num)
+);
+
+CREATE SEQUENCE board_seq START WITH 1 INCREMENT BY 1;
+
+alter table board add constraint board_u_id foreign key(u_id) references usertable(u_id);
+
+--게시글 댓글 테이블
+CREATE TABLE bcomment(
+	b_num number not null,
+    bc_num number not null,
+    bc_content varchar2(300) not null,
+    u_id varchar2(12) not null,
+    bc_date date default sysdate,
+    primary key(b_num, bc_num)
+);
+
+alter table bcomment add constraint bcomment_b_num foreign key(b_num) references board(b_num);
+
+create sequence bcomment_seq START WITH 1 MINVALUE 0;
+
+--회원 유지율 테이블
+create table userkeeprate(
+    userdelcount number
+);
+

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chartdata">
+
+<select id = "monthtotalsale" resultType = "int">
+SELECT sum(o_price) as monthprice
+FROM  orders 
+ <![CDATA[ WHERE o_date>=TRUNC(sysdate,'MM') AND o_date<LAST_DAY(sysdate)]]>
+</select>
+
+<select id = "daytotalsale" resultType = "int">
+SELECT sum(o_price) as dayprice
+FROM  orders 
+WHERE to_char(o_date, 'DD') = to_char(sysdate,'DD')
+</select>
+
+<select id = "userdelcount" resultType = "double">
+select sum(userdelcount) as delcount from userkeeprate
+</select>
+
+<select id = "usercount" resultType = "double">
+select count(u_id) as usercount from usertable
+</select>
+
+
+<select id ="getmonthsalesdata" resultType = "hashmap">
+	
+SELECT 
+  sum(o_price) as totalprice, 
+  sum(o_count) as count,
+  to_char(o_date, 'YYYY-MM') as month_date 
+FROM 
+  orders 
+WHERE 
+ <![CDATA[   o_date>= TO_CHAR(SYSDATE, 'YYYY') || '-01-01' AND o_date< TO_CHAR(SYSDATE, 'YYYY') || '-12-31' ]]>
+GROUP BY 
+  to_char(o_date, 'YYYY-MM') order by month_date
+</select>
+
+<select id = "getdaysalesdata" resultType = "hashmap">
+SELECT 
+  sum(o_price) as price, 
+  sum(o_count) as count,
+  to_char(o_date, 'MM-DD') as day_date
+FROM 
+  orders 
+WHERE 
+ <![CDATA[  o_date>=TRUNC(sysdate,'MM') AND o_date<LAST_DAY(sysdate)]]>
+GROUP BY 
+  to_char(o_date, 'MM-DD') order by day_date
+</select>
+
+<select id = "getcategorycount" resultType = "hashmap">
+select sum(o.o_count) as count , p.ca_smallcate as cate
+from orders o, product p
+where o.p_num = p.p_num 
+group by ca_smallcate
+</select>
+
+<select id = "gethitfivepname" resultType = "hashmap" >
+select pname,count
+from (
+select  p.p_name as pname,sum(o.o_count) as count
+from orders o, product p
+where o.p_num = p.p_num 
+group by p_name
+order by count desc
+) <![CDATA[ where rownum <= 5]]>
+
+</select>
+
+</mapper>

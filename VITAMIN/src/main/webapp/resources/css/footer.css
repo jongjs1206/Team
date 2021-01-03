@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+.f_top {
+	color: #000;
+	height: 350px;
+	margin: 50px;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.f_title {
+	color: #000;
+	list-style: none;
+	font: inherit;
+	vertical-align: baseline;
+	height: 30px;
+	font-family: 'Noto-B';
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.f_number {
+	font-size: 40px;
+	color: #ff6c7c;
+	font-weight: bold;
+}
+
+.f_col1 {
+	position: absolute;
+	left: 400px;
+	color: #000;
+	list-style: none;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	margin: 0 100px 0 0;
+	width: 268px;
+}
+
+.f_col2 {
+	position: absolute;
+	left: 750px;
+	color: #000;
+	list-style: none;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	margin: 0 100px 0 0;
+	width: 268px;
+}
+
+.f_col3 {
+	position: absolute;
+	left: 1100px;
+	color: #000;
+	list-style: none;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	margin: 0 100px 0 0;
+	width: 450px;
+	float: left;
+}
+
+.f_tit {
+	list-style: none;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	height: 24px;
+	font-family: 'Noto-B';
+	font-size: 16px;
+	font-weight: bold;
+	color: #000;
+	line-height: 24px;
+}
+
+.f_txt {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	height: 24px;
+	font-size: 14px;
+	color: #8b8b8b;
+	line-height: 24px;
+}
+
+.f_tat {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+	height: 24px;
+	font-size: 14px;
+	float: left;
+	line-height: 24px;
+	color: #ff6c7c;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.f_answer {
+	height: 25px;
+	font-size: 13px;
+	text-align: center;
+	background: #f5f5f5;
+	color: #797979;
+	margin: 30px 0;
+}
+
+.f_phone {
+	margin-bottom: 20px;
+}
+
+.f_bank {
+	vertical-align: baseline;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-family: 'Noto-B';
+	font-size: 16px;
+	font-weight: bold;
+	color: #ff6c7c;
+}
+
+.f_bank-list {
+	padding: 0;
+	font: inherit;
+	vertical-align: baseline;
+	list-style: none;
+	font-size: 14px;
+	color: #8b8b8b;
+	margin-bottom: 20px;
+}
+
+.f_bank-list strong {
+	list-style: none;
+	padding: 3px;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	display: inline-block;
+	width: 50px;
+	font-family: 'Noto-M';
+	color: #000;
+}
+
+.f_member {
+	padding-top: 10px;
+	color: black;
+	font-weight: bold;
+}
+
+.f_col3 .f_guide:nth-child(2) {
+	padding-top: 10px;
+	color: black;
+	font-weight: bold;
+}
+
+.f_col3 .f_guide:nth-child(3) {
+	color: black;
+	font-weight: bold;
+}
+
+.f_col3 hr {
+	margin-top: 20px;
+	margin-bottom: 14px;
+}
+
+.f_address {
+	margin-bottom: 40px;
+}
+
+.f_col3 img {
+	width: 400px;
+	height: 45px;
+}
+
+.f_bottom {
+	background: #000;
+	padding-top: 30px;
+	padding-left: 400px;
+	border: 0;
+	font: inherit;
+	position: relative;
+	left: -20px;
+	top:20px;
+	width: 1515px;
+	height: 180px;
+	color: #d6d6d6;
+}
+
+.f_b_title {
+	color: #fff;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 13px;
+	vertical-align: baseline;
+	font-family: 'Noto-B';
+	font-weight: bold;
+}
+
+.f_b_contents {
+	color: #d6d6d6;
+	list-style: none;
+	padding: 0;
+	border: 0;
+	font-size: 13px;
+	vertical-align: baseline;
+	position: relative;
+	margin: 0;
+}
+.f_hr{
+	width: 100%;
+}
+.f_top a{
+	color : black;
+	text-decoration:none;
+}

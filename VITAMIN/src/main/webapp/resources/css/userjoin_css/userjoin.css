@@ -1,0 +1,236 @@
+@charset "UTF-8";
+
+
+.contents {
+    margin: 0 auto;
+    width: 1400px;
+}
+
+/* join us */
+.contents > h2 {
+    padding: 10px 0 0 0;
+    min-height: 60px;
+    font-family: 'Noto-B';
+    font-size: 40px;
+    color: #ff7d9e;
+    text-align: center;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+.cs-form {
+    display: inline-block;
+    position: relative;
+    font-size: 0;
+}
+
+
+/* label */
+.contents.member.join.cs-form{
+	padding : 0 0 0 50px;
+}
+
+.cs-form input:checked + label {
+    background-position: 0 0;
+}
+
+.cs-form label {
+    display: inline-block;
+    position: relative;
+    padding: 0 0 0 40px;
+    font-family: 'Noto-M';
+    font-size: 15px;
+    color: #000;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    background: url(../../images/userjoin/form_check_new.png) no-repeat 0 -28px;
+}
+
+label {
+    cursor: pointer;
+}
+
+select, textarea, label, button {
+    margin: 0;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    vertical-align: middle;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+div {
+    display: block;
+}
+
+#agree1, #agree2-1, #agree2-2, #agree2-3 {
+	visibility: hidden;
+}
+
+.member .join {
+    margin: 0 auto;
+    width: 570px;
+}
+
+.member .join .use-txt .agree {
+    padding: 12px 0 15px 14px;
+    border-bottom: solid 1px #e6e6e6;
+    background: #f9f9f9;
+}
+
+.member .join .use-txt .txt {
+    overflow: auto;
+    padding: 14px;
+    height: 117px;
+    font-size: 13px;
+    color: #777;
+    line-height: 1.3;
+}
+
+/* pre */
+pre {
+    font-size: 14px;
+    color: #303030;
+    line-height: 160%;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
+pre {
+    display: block;
+    font-family: monospace;
+    white-space: pre;
+    margin: 1em 0px;
+}
+
+/* 동의 비동의 버튼 */
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+.btn-m-red span {
+    color: #fff;
+    background: #ff7d9e;
+}
+
+.btn-m-line span {
+    color: #929292;
+    border: solid 1px #bebebe;
+    background: #fff;
+}
+
+[class^="btn-m"] span {
+    padding: 0 10px;
+    min-width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-family: 'Noto-M';
+    font-size: 18px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+[class^="btn-"] span {
+    display: block;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+button span {
+    display: block;
+    position: relative;
+}
+
+[class^="btn-"] {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: top;
+    border: none;
+    background: none;
+}
+
+button {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+button {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    text-align: center;
+    cursor: default;
+    font: 400 13.3333px Arial;
+}
+
+button {
+    appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+.btnbox {
+    font-size: 0;
+    text-align: center;
+}
+
+.btnbox li {
+    display: inline-block;
+ 	margin: 36px 4px 18px 0;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+

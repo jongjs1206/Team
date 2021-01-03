@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+
+
+html,
+body {
+	height: 100%;
+	font-family: "Poppins", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+h3 {
+	margin: 0;
+	color: #111111;
+	font-weight: 400;
+	font-family: "Poppins", sans-serif;
+	font-size: 30px;
+}
+
+p {
+	font-size: 15px;
+	font-family: "Poppins", sans-serif;
+	color: #666666;
+	font-weight: 400;
+	line-height: 25px;
+	margin: 0 0 15px 0;
+}
+
+/*---------------------
+  Doctor
+-----------------------*/
+.doctor__item {
+  padding-bottom: 65px;
+  border-bottom: 1px solid #f2f2f2;
+  margin-bottom: 65px;
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.doctor__item__pic {
+  text-align: center;
+
+  img {
+    height: 470px;
+    width: 470px;
+    border-radius: 50%;
+    border: 10px solid $white-color;
+    box-shadow: 0px 3px 10px rgba(48, 68, 78, 0.2);
+  }
+}
+
+.doctor__item__text {
+  padding-top: 25px;
+  margin-left: 600px;   /* img위치 */
+  &.doctor__item__text--left {
+    text-align: right;
+  }
+
+  span {
+  	
+    color: $primary-color;
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    color: $heading-color;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  ul {
+    margin-bottom: 30px;
+
+    li {
+      list-style: none;
+      font-size: 15px;
+      color: #666666;
+      line-height: 36px;
+
+      i {
+        color: $primary-color;
+        font-size: 15px;
+        margin-right: 6px;
+      }
+    }
+  }
+}
+
+.doctor__item__social {
+
+  a {
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background: #f2f7f8;
+    font-size: 18px;
+    color: $heading-color;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 6px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+/*---------------------
+  Doctor
+-----------------------*/
+
+.doctor__item {
+	padding-bottom: 65px;
+	border-bottom: 1px solid #f2f2f2;
+	margin-bottom: 65px;
+}
+
+.doctor__item:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.doctor__item__pic {
+	text-align: center;
+}
+
+.doctor__item__pic img {
+	height: 470px;
+	width: 470px;
+	border-radius: 50%;
+	border: 10px solid #ffffff;
+	-webkit-box-shadow: 0px 3px 10px rgba(48, 68, 78, 0.2);
+	box-shadow: 0px 3px 10px rgba(48, 68, 78, 0.2);
+}
+
+.doctor__item__text {
+	padding-top: 25px;
+}
+
+.doctor__item__text.doctor__item__text--left {
+	text-align: right;
+}
+
+.doctor__item__text span {
+	color: #13a2b7;
+	font-size: 15px;
+	font-weight: 500;
+	text-transform: uppercase;
+	display: block;
+	margin-bottom: 6px;
+}
+
+.doctor__item__text h2 {
+	color: #111111;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+.doctor__item__text ul {
+	margin-bottom: 30px;
+}
+
+.doctor__item__text ul li {
+	list-style: none;
+	font-size: 15px;
+	color: #666666;
+	line-height: 36px;
+}
+
+.doctor__item__text ul li i {
+	color: #13a2b7;
+	font-size: 15px;
+	margin-right: 6px;
+}
+
+.doctor__item__social a {
+	display: inline-block;
+	height: 50px;
+	width: 50px;
+	background: #f2f7f8;
+	font-size: 18px;
+	color: #111111;
+	line-height: 50px;
+	text-align: center;
+	border-radius: 50%;
+	margin-right: 6px;
+}
+
+.doctor__item__social a:last-child {
+	margin-right: 0;
+}
+
+/* --------------------------------- */
+.info {
+	margin : 100px;
+}
+
+#todayFood {  /* 테이블 위치 */
+	margin-left: 300px;
+}
+

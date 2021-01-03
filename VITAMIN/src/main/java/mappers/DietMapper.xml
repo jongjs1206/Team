@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="diet">
+	<!-- 식단 랜덤 -->
+	<select id="random" resultType="diet">
+		<![CDATA[
+		select * from (select * from diet
+		order by DBMS_RANDOM.VALUE)
+		where rownum <= 3 and d_type = #{d_type}
+		]]>
+	</select>
+	
+	<!-- 회원정보 -->
+	<select id="dietuserList" resultType="diet">
+		<![CDATA[
+		select u_name , u_height, u_weight , u_idnum
+		from usertable
+		where u_id = #{u_id}
+		]]>
+	</select>
+	
+<!-- 	<select id="age" resultType="int" parameterType="diet">
+	<![CDATA[
+			select  trunc(months_between(sysdate, to_date(case when substr(${u_idnum},8,1) in ('1','2')
+                  then '19' || substr(${u_idnum},1,6)
+                  when  substr(${u_idnum},8,1) in ('3','4')
+                  then '20' || substr(${u_idnum},1,6)
+              end,'YYYYMMDD'))/12) as age
+			from usertable where u_id = #{u_id}
+  	]]>
+	</select> -->
+	
+	<select id="age" resultType="int" parameterType="diet">
+	<![CDATA[
+	 SELECT TRUNC (MONTHS_BETWEEN (SYSDATE, TO_DATE (RES, 'YYYYMMDD')) / 12) 
+          AS AGE
+ 	 FROM (SELECT (CASE
+                   WHEN SUBSTR ('${u_idnum}', 8, 1) IN ('1', '2')
+                   THEN
+                      '19' || SUBSTR ('${u_idnum}', 1, 6)
+                   WHEN SUBSTR ('${u_idnum}', 8, 1) IN ('3', '4')
+                   THEN
+                      '20' || SUBSTR ('${u_idnum}', 1, 6)
+                END)
+                  AS RES
+          FROM DUAL)
+ 	 ]]>
+    </select>
+</mapper>

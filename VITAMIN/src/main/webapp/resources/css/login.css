@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+.login{
+	margin : 120px 0 200px 300px;
+	width: 1233px;
+	height: 314px;
+}
+.login_main{
+		color: #666;
+letter-spacing: -0.5px;
+box-sizing: border-box;
+-webkit-font-smoothing: antialiased;
+margin: 18px 0 22px;
+padding: 0;
+border: 0;
+outline: 0;
+font: inherit;
+font-size: 100%;
+vertical-align: baseline;
+background: transparent;
+float: left;
+width: 50%;
+padding-right: 60px;
+border-right: 1px solid #e8e8e8;
+
+}
+.login_nav{
+	color: #666;
+letter-spacing: -0.5px;
+box-sizing: border-box;
+-webkit-font-smoothing: antialiased;
+font: inherit;
+font-size: 100%;
+vertical-align: baseline;
+background: transparent;
+display: block;
+width: 100%;
+}
+.login_1{
+font: inherit;
+letter-spacing: -0.5px;
+-webkit-font-smoothing: antialiased;
+vertical-align: baseline;
+text-decoration: none;
+display: block;
+position: relative;
+float: left;
+width: 50%;
+margin-left: -1px;
+font-size: 14px;
+line-height: 52px;
+text-align: center;
+box-sizing: border-box;
+z-index: 2;
+border-left: 1px solid #ccc;
+border-right: 1px solid #ccc;
+border-bottom: none;
+color: #000;
+font-weight: 600;
+background: #fff;
+cursor: pointer;
+}
+.login_1::after{
+    position: absolute;
+    top: 0;
+    left: -1px;
+    right: -1px;
+    height: 1px;
+    background: #ff7d92;
+    content: "";
+}
+.login_2{
+	font: inherit;
+letter-spacing: -0.5px;
+-webkit-font-smoothing: antialiased;
+vertical-align: baseline;
+text-decoration: none;
+display: block;
+position: relative;
+z-index: 1;
+float: left;
+width: 50%;
+margin-left: -1px;
+color: #999999;
+background: #f8f8f8;
+font-size: 14px;
+border-bottom: 1px solid #ccc;
+line-height: 52px;
+text-align: center;
+box-sizing: border-box;
+cursor: pointer;
+}
+
+.text1{
+	letter-spacing: -0.5px;
+-webkit-font-smoothing: antialiased;
+font-weight: 400;
+font-family: inherit;
+line-height: 1.15;
+margin-top: 45px;
+overflow: visible;
+padding: 0 10px;
+color: #000;
+border: 1px solid #ccc;
+background: #fff;
+vertical-align: middle;
+box-sizing: border-box;
+width: 100%;
+height: 50px;
+font-size: 15px;
+}
+.text2{
+	letter-spacing: -0.5px;
+-webkit-font-smoothing: antialiased;
+font-weight: 400;
+font-family: inherit;
+line-height: 1.15;
+margin-top: 10px;
+margin-bottom: 10px;
+overflow: visible;
+padding: 0 10px;
+color: #000;
+border: 1px solid #ccc;
+background: #fff;
+vertical-align: middle;
+box-sizing: border-box;
+width: 100%;
+height: 50px;
+font-size: 15px;
+}
+.login_main button{
+	letter-spacing: -0.5px;
+box-sizing: border-box;
+-webkit-font-smoothing: antialiased;
+font-weight: 400;
+font-family: inherit;
+line-height: 1.15;
+margin: 0;
+overflow: visible;
+text-transform: none;
+border: 0;
+cursor: pointer;
+width: 100%;
+margin-top: 20px;
+padding: 19px 0;
+color: #fff;
+font-size: 20px;
+background: #ff7d92;
+}
+
+.nomember{
+	display:none;
+}
+
+.fb{
+	color: #666;
+letter-spacing: -0.5px;
+box-sizing: border-box;
+-webkit-font-smoothing: antialiased;
+margin: 0;
+padding: 0;
+border: 0;
+outline: 0;
+font: inherit;
+font-size: 100%;
+vertical-align: baseline;
+background: transparent;
+width: 50%;
+padding-left: 60px;
+float: right;
+}
+.link{
+	font: inherit;
+letter-spacing: -0.5px;
+box-sizing: border-box;
+-webkit-font-smoothing: antialiased;
+vertical-align: baseline;
+text-decoration: none;
+display: block;
+width: 100%;
+margin: 18px 0 22px;
+padding: 17px 0;
+color: #000;
+font-size: 18px;
+font-weight: 600;
+border: 1px solid #000;
+background: #fff;
+text-align: center;
+}
+.fb h3{
+    color: #000;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+}
+.message{
+	color:red;
+	padding-left : 10px;
+}

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderSearch">
+	
+	<!-- 전체조회 -->
+	<select id="orderMlist" resultType="orderSearch" >
+	select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+	from orders o, product p 
+	where o.p_num = p.p_num and u_id = #{u_id} and o_delivery in  ('입금전','결제완료','준비중','배송중','배송완료')
+	</select>
+	
+    <!-- 전체 취소/반품/교환 -->
+	<select id="orderCancelList" resultType="orderSearch" >
+	select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+	from orders o, product p 
+	where o.p_num = p.p_num and u_id = #{u_id} and o_delivery in ('취소','취소완료','반품','반품완료','교환','교환완료')
+	</select>
+	
+	<!-- 날짜별 조회 -->
+	<select id="orderDay" resultType="orderSearch">
+ 		select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+		from orders o, product p 
+		where o.p_num = p.p_num and o_Date BETWEEN #{o_startDate} and #{o_endDate} and u_id = #{u_id} 
+		and o_delivery in  ('입금전','결제완료','준비중','배송중','배송완료')
+	</select>
+	
+	<!-- 회원 날짜별 취소 반품 -->
+	<select id="orderDaycancel" resultType="orderSearch">
+ 		select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+		from orders o, product p 
+		where o.p_num = p.p_num and o_Date BETWEEN #{o_startDate} and #{o_endDate} and u_id = #{u_id} 
+		and o_delivery in  ('취소','취소완료','반품','반품완료','교환','교환완료')
+	</select>
+	
+	<!-- 비회원 조회 -->
+	<select id="BMlist" resultType="orderSearch" >
+	select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+	from orders o, product p 
+	where o.p_num = p.p_num and o_tel = #{o_tel} and o_name = #{o_name} and o_delivery in ('입금전','결제완료','준비중','배송중','배송완료')
+	</select>
+	
+	<!-- 비회원 날짜별 조회 -->
+	<select id="BMDay" resultType="orderSearch">
+ 		select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+		from orders o, product p 
+		where o.p_num = p.p_num and o_Date BETWEEN #{o_startDate} and #{o_endDate} and o_tel = #{o_tel}  and o_name = #{o_name} 
+		and o_delivery in ('입금전','결제완료','준비중','배송중','배송완료')
+	</select>
+	
+	  <!-- 비회원 취소/반품/교환 -->
+	<select id="BMCancelList" resultType="orderSearch" >
+	select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+	from orders o, product p 
+	where o.p_num = p.p_num and o_tel = #{o_tel}  and o_name = #{o_name} and o_delivery in ('취소','취소완료','반품','반품완료','교환','교환완료')
+	</select>
+	
+	<!-- 비회원 날짜별 취소 반품 -->
+	<select id="BMDaycancel" resultType="orderSearch">
+ 		select o.o_date, o.o_num, p.p_name, o.o_count, o.o_price, o.o_delivery 
+		from orders o, product p 
+		where o.p_num = p.p_num and o_Date BETWEEN #{o_startDate} and #{o_endDate} and o_tel = #{o_tel}  and o_name = #{o_name} 
+		and o_delivery in  ('취소','취소완료','반품','반품완료','교환','교환완료')
+	</select>
+	
+	<!-- ================================================================================= -->
+	<!-- 상품조회 -->
+	<select id="productList"  resultType="orderSearch"> 
+	select o.o_num , o.o_date ,  p.p_name, po.po_optionName, o_count, o.o_price , p.p_sellprice
+	from orders o, product p , productOptions po
+	where o.p_num = p.p_num and p.p_num  = po.p_num(+) and  o.o_num = #{o_num}
+	</select>
+	
+	<!-- 회원정보 조회 -->
+	<select id="userinfoList" resultType="orderSearch">
+		<![CDATA[
+		select o_name , o_tel , o_add
+		from orders
+		where o_num = #{o_num}
+		]]>
+	</select>
+	
+	<update id= "orderstateupdate" parameterType="orderSearch">
+	
+	update orders 
+		<choose>
+			<when test='o_delivery=="준비중"'>
+				set o_delivery = '배송중'
+			</when>
+			<when test='o_delivery=="배송중"'>
+				set o_delivery = '배송완료'
+			</when>
+			<when test='o_delivery=="반품"'>
+				set o_delivery = '반품완료'
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	where o_num = #{o_num}
+	</update>
+	
+	<update id= "orderstatecancle" parameterType="orderSearch">
+	
+	update orders 
+	set o_delivery = '취소'
+	where o_num = #{o_num}
+	</update>	
+	
+	<select id="getorderinfo" parameterType = "string" resultType="hashmap">
+select o.o_num as o_num , nvl(o.o_name,'없음') as o_name , nvl(o.o_date,sysdate) as o_date,o.o_tel as o_tel,o.o_add as o_add, o.o_delivery as o_delivery,u.u_id as u_id,
+p.p_name as p_name , o.o_count as o_count, o.o_price as o_price, nvl(po.po_optionname,'없음') as po_optionname , p.p_mainimage as p_mainimage 
+from orders o , product p , usertable u , productoptions po
+where o.p_num = p.p_num and o.po_optionnum = po.po_optionnum(+) and o.u_id = u.u_id(+)
+and o_num = #{o_num}
+	</select>
+	
+</mapper>
+
+
+
+
+
+

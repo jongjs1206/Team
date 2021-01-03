@@ -1,0 +1,343 @@
+@charset "UTF-8";
+
+header {
+	padding-top: 41px;
+	margin-bottom: 20px;
+}
+
+.h_top {
+	width: 1920px;
+}
+
+.h_top_logo {
+	margin-left: 360px;
+}
+
+.h_name {
+	font-size: 40px;
+	letter-spacing: 5px;
+	font-weight: bold;
+	color: #ff7d92;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.h_search {
+	visibility: visible;
+	user-select: none;
+	vertical-align: middle;
+	outline: none;
+	display: inline-block;
+	position: relative;
+	font-family: 'Spoqa Han Sans', "Malgun Gothic", sans-serif;
+	color: #393939;
+	width: 220px;
+	height: 31px;
+	line-height: normal;
+	outline-style: none;
+	appearance: none;
+	box-sizing: border-box;
+	padding-left: 5px;
+	padding-bottom: 5px;
+	border: 0;
+	border-bottom: 1px solid #ff7d92;
+	font-size: 14px;
+	margin-left: 40px;
+	top: -5px;
+}
+
+.h_glass {
+	width: 25px;
+	cursor: pointer;
+}
+
+.h_grade {
+	width: 220px;
+	position: absolute;
+	top: 40px;
+	left: 1270px;
+	cursor: pointer;
+}
+
+.h_menu {
+	margin-left: 360px;
+	padding-top: 40px;
+}
+
+.h_menu_left {
+	display: inline;
+	visibility: visible;
+	font-size: 16px;
+	user-select: none;
+	font-family: 'Open Sans', sans-serif;
+	list-style: none;
+	color: #000;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	border: 0;
+}
+
+.h_menu_left>a {
+	cursor: pointer;
+	padding-right: 35px;
+	color: black;
+	text-decoration: none;
+	z-index: 50;
+}
+
+.h_menu_left>a:hover {
+	cursor: pointer;
+	padding-right: 35px;
+	color: #ff7d92;
+	text-decoration: none;
+	z-index: 50;
+}
+
+.h_menu_right {
+	display: inline;
+	visibility: visible;
+	font-family: 'Spoqa Han Sans', "Malgun Gothic", sans-serif;
+	font-weight: 400;
+	user-select: none;
+	list-style: none;
+	line-height: 16px;
+	color: #393939;
+	margin-top: 5px;
+	padding: 0;
+	vertical-align: baseline;
+	border: 0;
+	font-size: 12px;
+	float: right;
+	margin-right: 450px;
+}
+
+.h_menu_right>a {
+	cursor: pointer;
+	padding-left: 10px;
+	color: black;
+	text-decoration: none
+}
+
+ul, ol, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.myMenu li {
+	display: inline-block;
+	width: 80px;
+	padding: 5px 10px;
+	text-align: center;
+}
+
+.submenu {
+	display: none;
+	position: absolute; /* right: 60px; top: 70px; */
+}
+
+.submenu {
+	display: inline-block;
+	width: 80px;
+	border: 1px solid #eee;
+	text-align: center;
+}
+
+.submenu>li:hover {
+	background: #fff;
+}
+
+#labelMenu {
+	text-decoration: none;
+	color: balck;
+}
+
+#labelcalendar {
+	text-decoration: none;
+	color: balck;
+}
+
+.h_mem {
+	padding-left: 10px;
+	font-size: 12px;
+}
+
+.h_triangle1 {
+	margin-left: 15px;
+	margin-top: 10px;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid black;
+}
+
+.h_triangle2 {
+	margin-left: 15px;
+	margin-top: 10px;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid black;
+}
+
+.h_triangle3 {
+	margin-left: 25px;
+	margin-top: 10px;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid black;
+}
+
+.h_triangle4 {
+	margin-left: 25px;
+	margin-top: 10px;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid black;
+}
+
+.h_triangle5 {
+	margin-left: 25px;
+	margin-top: 10px;
+	width: 0;
+	height: 0;
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 10px solid black;
+}
+
+.h_content1 {
+	width: 100px;
+	height: 180px;
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
+.h_content1>div {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.h_health {
+	position: absolute;
+	top: 155px;
+	left: 360px;
+	z-index: 10;
+}
+
+.h_content2 {
+	width: 105px;
+	height: 152px;
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
+.h_content2>div {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.h_yoga {
+	position: absolute;
+	top: 155px;
+	left: 470px;
+	z-index: 10;
+}
+
+.h_content3 {
+	width: 90px;
+	height: 122px;
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
+.h_content3>div {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.h_dress {
+	position: absolute;
+	top: 155px;
+	left: 600px;
+	z-index: 10;
+}
+
+.h_content4 {
+	width: 120px;
+	height: 150px;
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
+.h_content4>div {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.h_food {
+	position: absolute;
+	top: 155px;
+	left: 700px;
+	z-index: 10;
+}
+
+/* -------------------------------------------------------------------------------------- */
+.h_content5 {
+	width: 120px;
+	height: 70px;
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
+.h_content5>div {
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14px;
+}
+
+.h_healthCare {
+	position: absolute;
+	top: 155px;
+	left: 1425px;
+	z-index: 10;
+}
+
+.h_health, .h_yoga, .h_dress, .h_food, .h_healthCare {
+	top: -300px;
+}
+
+.h_health a, .h_yoga a, .h_dress a, .h_food a, .h_healthCare a {
+	color: white;
+	text-decoration: none;
+}
+
+.basknum { 
+	position: absolute;
+	left: 1350px;
+	top: 138px;
+	font-size: 12px;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #ff7d92;
+	color: white;
+	text-align: center;
+}

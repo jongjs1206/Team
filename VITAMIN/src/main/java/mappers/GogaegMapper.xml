@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="GogaegDAO">
+
+
+	 <insert id="insertGogaeg" parameterType="gogaeg">
+      INSERT INTO gogaegs
+      (b_id,b_title,b_content,b_email,b_date
+      <if test="b_fname !=null">
+      ,
+      b_fname
+      </if>
+      ) 
+      VALUES(gogaegs_bid_seq.NEXTVAL,#{b_title},#{b_content},#{b_email},sysdate
+      <if test="b_fname !=null">
+      ,
+      #{b_fname}
+      </if>
+      )
+   </insert>
+
+	<select id="getGogaegList"  resultType="gogaeg">
+	
+	SELECT * FROM gogaegs ORDER BY b_id DESC
+	
+	</select>
+	
+	<update id="updateGogaeg"  parameterType="gogaeg">
+		<![CDATA[
+ 		UPDATE gogaegs SET 
+		b_title = #{b_title}, 
+		b_content = #{b_content}
+		WHERE b_id = #{b_id}
+		]]> 
+	</update>
+	
+	<delete id="deleteGogaeg"  parameterType="gogaeg">
+		<![CDATA[
+		DELETE gogaegs 
+ 		WHERE b_id = #{b_id} 
+		]]>
+	</delete>
+	
+	<select id="getGogaeg"  parameterType="gogaeg" resultType="gogaeg">
+	
+		SELECT *
+		FROM gogaegs
+		WHERE b_id = #{b_id}
+
+	</select>
+	
+
+</mapper>
