@@ -19,17 +19,17 @@
 				<!-- 2. 각 항목에  name 맞추기 -->
 				<tr>
 					<td bgcolor=" #ff7d9e" width="70">제목</td>
-					<td align="left"><input type="text" name="b_title" /></td>
+					<td align="left"><input type="text" name="gb_title" /></td>
 				</tr>
 				
 				<tr>
 					<td bgcolor=" #ff7d9e">내용</td>
-					<td align="left"><textarea cols="40" rows="10" name="b_content"></textarea></td>
+					<td align="left"><textarea cols="40" rows="10" name="gb_content"></textarea></td>
 				</tr>
 				<!-- 추가항목 시작 -->
 				<tr>
 					<td bgcolor=" #ff7d9e">이메일</td>
-					<td align="left"><input type="text" name="b_email" /></td>
+					<td align="left"><input type="text" name="gb_email" /></td>
 				</tr>
 		
 				<tr>

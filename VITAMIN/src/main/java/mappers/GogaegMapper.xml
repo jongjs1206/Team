@@ -6,39 +6,39 @@
 
 	 <insert id="insertGogaeg" parameterType="gogaeg">
       INSERT INTO gogaegs
-      (b_id,b_title,b_content,b_email,b_date
-      <if test="b_fname !=null">
+      (gb_id,gb_title,gb_content,gb_email,gb_date
+      <if test="gb_fname !=null">
       ,
-      b_fname
+      gb_fname
       </if>
       ) 
-      VALUES(gogaegs_bid_seq.NEXTVAL,#{b_title},#{b_content},#{b_email},sysdate
-      <if test="b_fname !=null">
+      VALUES(gogaegs_gbid_seq.NEXTVAL,#{gb_title},#{gb_content},#{gb_email},sysdate
+      <if test="gb_fname !=null">
       ,
-      #{b_fname}
+      #{gb_fname}
       </if>
       )
    </insert>
 
 	<select id="getGogaegList"  resultType="gogaeg">
 	
-	SELECT * FROM gogaegs ORDER BY b_id DESC
+	SELECT * FROM gogaegs ORDER BY gb_id DESC
 	
 	</select>
 	
 	<update id="updateGogaeg"  parameterType="gogaeg">
 		<![CDATA[
  		UPDATE gogaegs SET 
-		b_title = #{b_title}, 
-		b_content = #{b_content}
-		WHERE b_id = #{b_id}
+		gb_title = #{gb_title}, 
+		gb_content = #{gb_content}
+		WHERE gb_id = #{gb_id}
 		]]> 
 	</update>
 	
 	<delete id="deleteGogaeg"  parameterType="gogaeg">
 		<![CDATA[
 		DELETE gogaegs 
- 		WHERE b_id = #{b_id} 
+ 		WHERE gb_id = #{gb_id} 
 		]]>
 	</delete>
 	
@@ -46,7 +46,7 @@
 	
 		SELECT *
 		FROM gogaegs
-		WHERE b_id = #{b_id}
+		WHERE gb_id = #{gb_id}
 
 	</select>
 	

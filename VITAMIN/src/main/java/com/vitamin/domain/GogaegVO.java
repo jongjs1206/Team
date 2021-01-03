@@ -6,17 +6,51 @@ import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
 public class GogaegVO {
-	private int b_id;
-	private String b_title;
-	private String b_content;
-	private String b_email;
-	private String b_date;	
-	private String b_fname;
+	private int gb_id;
+	private String gb_title;
+	private String gb_content;
+	private String gb_email;
+	private String gb_date;	
+	private String gb_fname;
 
-	
-	
-	
 
+	public int getGb_id() {
+		return gb_id;
+	}
+	public void setGb_id(int gb_id) {
+		this.gb_id = gb_id;
+	}
+	public String getGb_title() {
+		return gb_title;
+	}
+	public void setGb_title(String gb_title) {
+		this.gb_title = gb_title;
+	}
+	public String getGb_content() {
+		return gb_content;
+	}
+	public void setGb_content(String gb_content) {
+		this.gb_content = gb_content;
+	}
+	public String getGb_email() {
+		return gb_email;
+	}
+	public void setGb_email(String gb_email) {
+		this.gb_email = gb_email;
+	}
+	public String getGb_date() {
+		return gb_date;
+	}
+	public void setGb_date(String gb_date) {
+		this.gb_date = gb_date;
+	}
+	public String getGb_fname() {
+		return gb_fname;
+	}
+	public void setGb_fname(String gb_fname) {
+		this.gb_fname = gb_fname;
+	}
+	
 	//*************************************************
 	//파일 없로드:
 	MultipartFile file;   // write.jsp에 파일첨부시 name="file"과 동일한 변수명
@@ -29,12 +63,12 @@ public class GogaegVO {
 		
 		// 업로드 파일 접근
 		if(! file.isEmpty()){
-			this.b_fname = file.getOriginalFilename();
+			this.gb_fname = file.getOriginalFilename();
 			
 			
 			//***********************************************
 			// 해당 경로로 변경
-			File f = new File("C:\\java\\spring\\team\\VITAMIN\\src\\main\\webapp\\resources\\upload\\"+b_fname);
+			File f = new File("C:\\java\\spring\\team\\VITAMIN\\src\\main\\webapp\\resources\\upload\\"+gb_fname);
 			
 			try {
 				file.transferTo(f);
@@ -47,42 +81,7 @@ public class GogaegVO {
 			}
 		}
 	}//end 파일 업로드
-	public int getB_id() {
-		return b_id;
-	}
-	public void setB_id(int b_id) {
-		this.b_id = b_id;
-	}
-	public String getB_title() {
-		return b_title;
-	}
-	public void setB_title(String b_title) {
-		this.b_title = b_title;
-	}
-	public String getB_content() {
-		return b_content;
-	}
-	public void setB_content(String b_content) {
-		this.b_content = b_content;
-	}
-	public String getB_email() {
-		return b_email;
-	}
-	public void setB_email(String b_email) {
-		this.b_email = b_email;
-	}
-	public String getB_date() {
-		return b_date;
-	}
-	public void setB_date(String b_date) {
-		this.b_date = b_date;
-	}
-	public String getB_fname() {
-		return b_fname;
-	}
-	public void setB_fname(String b_fname) {
-		this.b_fname = b_fname;
-	}
+	
 
 	
 	

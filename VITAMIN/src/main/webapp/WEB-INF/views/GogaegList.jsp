@@ -40,14 +40,14 @@
 				<!-- 프라퍼티이름 변경 -->
 				<tr>
 
-					<td align="left"><a href="getGogaeg.do?b_id=${gogaeg.b_id}">
-							${gogaeg.b_title }</a></td>
-					<td>${gogaeg.b_content }</td>
-					<td>${gogaeg.b_email }</td>
-					<td>${gogaeg.b_date }</td>
+					<td align="left"><a href="getGogaeg.do?gb_id=${gogaeg.gb_id}">
+							${gogaeg.gb_title }</a></td>
+					<td>${gogaeg.gb_content }</td>
+					<td>${gogaeg.gb_email }</td>
+					<td>${gogaeg.gb_date }</td>
 					<!-- 추가 -->
 					<td><img width="70" alt=""
-						src="/VITAMIN/resources/upload/${gogaeg.b_fname}"></td>
+						src="/VITAMIN/resources/upload/${gogaeg.gb_fname}"></td>
 				
 					</td>
 				</tr>
