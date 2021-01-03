@@ -36,8 +36,6 @@
                <a href='goods.do?menu=요가/필라테스&page=1' class='h_product2'>요가/필라테스</a>
                <a href='goods.do?menu=운동복&page=1' class='h_product3'>운동복</a>
                <a href='goods.do?menu=건강식품&page=1' class='h_product4'>건강식품</a> 
-               <a>게시판</a> 
-               <a href='GogaegList.do'>고객센터</a>
                <c:if test="${sessionScope.rank eq '관리자'}">
                   <a href ="admin_view/adminmain.do">관리자</a>
                </c:if>

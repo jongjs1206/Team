@@ -22,7 +22,6 @@
 		<typeAlias alias="option" type="com.vitamin.domain.OptionVO" />	
 		<typeAlias alias="orderSearch" type="com.vitamin.domain.OrderVO" />
 		<typeAlias alias="diet" type="com.vitamin.domain.DietVO" />
-		<typeAlias alias="gogaeg" type="com.vitamin.domain.GogaegVO" />	
 	</typeAliases>
 
 
