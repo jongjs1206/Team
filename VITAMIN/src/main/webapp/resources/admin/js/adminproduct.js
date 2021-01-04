@@ -1,5 +1,5 @@
 $(function(){
-	
+	//카테고리바꼇을때 ajax
 		$('#ca_largecate').change(function(){
 	
 				$.ajax({
@@ -25,11 +25,11 @@ $(function(){
 				
 					});
 			})
-	
+	//메인이미지 바꼇을때 이벤트
             $("#mainfile").on("change", handleImgFileSelect);
 	
 	        var sel_file;
-	        
+	//서브이미지 바꼇을때 이벤트
 	        $("#subfileInput").on("change", handleImgsFilesSelects);
 	        
 	        var sel_files = [];
@@ -37,7 +37,7 @@ $(function(){
  			var sub_sel_files = [];
  
  			var filesArr = [];
- 			
+ 	// 이미지 이벤트 코드 
         function handleImgFileSelect(e) {
             var files = e.target.files;
             	filesArr = Array.prototype.slice.call(files);
@@ -57,39 +57,7 @@ $(function(){
                 reader.readAsDataURL(f);
             });
         }
-        /*
-        // var files = [];
-         
-         var filesArr = [];
-         var readers = [];
-          function handleImgsFilesSelects(e) {
-         	var files = files.add(e.target.files);
-         	console.log(typeof files);
-           	filesArr = Array.prototype.slice.call(files);
- 
-                //	$(".imgs_wraps").empty();
-            filesArr.forEach(function(f) {
-                if(!f.type.match("image.*")) {
-                    alert("확장자는 이미지 확장자만 가능합니다.");
-                    return;
-                }
- 
-                sub_sel_files.push(f);
- 
-                var reader = new FileReader();
-                
-                readers.push(reader);
-                
-                reader.onload = function(e) {
-                    var img_html = "<img src=\"" + e.target.result + "\" />";
-                    $(".imgs_wraps").append(img_html);
-                }
-                reader.readAsDataURL(f);
-               
-            });
-        }*/
         
-
           function handleImgsFilesSelects(e) {
          // e.preventDefault();
           

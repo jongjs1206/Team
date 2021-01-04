@@ -49,18 +49,6 @@
 						<li class="nav-item"><a class="nav-link" href="adminorder.do">
 								<i class="fas fa-list-alt"></i> order <span class="sr-only">(current)</span>
 						</a></li>
-<!-- 						<li class="nav-item dropdown"><a -->
-<!-- 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown" -->
-<!-- 							role="button" data-toggle="dropdown" aria-haspopup="true" -->
-<!-- 							aria-expanded="false"> <i class="fas fa-chart-bar"></i> <span> -->
-<!-- 									Chart <i class="fas fa-angle-down"></i> -->
-<!-- 							</span> -->
-<!-- 						</a> -->
-<!-- 							<div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-<!-- 								<a class="dropdown-item" href="#">Daily Chart</a> <a -->
-<!-- 									class="dropdown-item" href="#">Weekly Chart</a> <a -->
-<!-- 									class="dropdown-item" href="#">Yearly Chart</a> -->
-<!-- 							</div></li> -->
 						<li class="nav-item"><a class="nav-link active"
 							href="products.do?category=아령,덤벨"> <i
 								class="fas fa-shopping-cart"></i> Products
@@ -123,20 +111,10 @@
 									<label for="ca_smallcate">카테고리 - 소분류</label> <select
 										class="custom-select tm-select-accounts form-control"
 										id="ca_smallcate" name = "ca_smallcate" required>
-										<!-- 										<option selected>소분류 선택</option> -->
-										<!-- 										<option value="1">......1</option> -->
-										<!-- 										<option value="2">......2</option> -->
-										<!-- 										<option value="3">......3</option> -->
 									</select>
 								</div>
 
 								<div class="row">
-									<!-- 									<div class="form-group mb-3 col-xs-12 col-sm-9"> -->
-									<!-- 										<label for="expire_date">Expire Date </label> <input -->
-									<!-- 											id="expire_date" name="expire_date" type="text" -->
-									<!-- 											class="form-control validate" data-large-mode="true" /> -->
-									<!-- 									</div> -->
-									
 								</div>
 								<div class="row" id="productprice">
 									<div class="form-group mb-3 col-xs-12 col-sm-6">
@@ -166,8 +144,6 @@
 							</div>
 							<div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
 								<div class="tm-product-img-dummy mx-auto" id = "img_wrap" style = "overflow : hidden;">
-<!-- 									<i class="fas fa-cloud-upload-alt tm-upload-icon" -->
-<!-- 										onclick="document.getElementById('mainfile').click();"></i> -->
 									<div class="img_wrap">
 										<img id="img" />
 									</div>

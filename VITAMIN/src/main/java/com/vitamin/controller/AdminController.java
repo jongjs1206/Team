@@ -83,9 +83,6 @@ public class AdminController {
                 e.printStackTrace();
             }
         }
-//		for(String data : subfilelist) {
-//			System.out.println(data);
-//		}
 		//멀티파일 업로드 코드 끝 
 		//이미지 등록 시작
 		System.out.println("상품넘버 : "+vo.getP_num());
@@ -128,13 +125,9 @@ public class AdminController {
 			List<ProductVO> list = goodsService.productlist(vo);
 			Map map = new HashMap();
 			map.put("goodsList", list);
-			
-//			for(ProductVO data : list) {
-//				System.out.println(data.getCa_smallcate());
-//			}
 			return map;
 		}
-		
+		//상품 수정 요청 코드 
 		@RequestMapping("admin_view/edit-product.do")
 		public Map editproductform(String p_num) {
 			System.out.println("edit-pdoduct 요청");
@@ -155,6 +148,7 @@ public class AdminController {
 			System.out.println("끝");
 			return map;
 		}
+		//메인이미지 변경요청 코드 
 		@RequestMapping(value = "admin_view/mainimagechange.do", method=RequestMethod.POST)
 		@ResponseBody
 		public String mainimagechange(ProductVO vo) {
@@ -165,7 +159,6 @@ public class AdminController {
 			
 			return "힘들다";
 		}
-		
 
 		@RequestMapping(value = "admin_view/subimagedel.do", method=RequestMethod.POST)
 			@ResponseBody
@@ -263,7 +256,7 @@ public class AdminController {
 			System.out.println("상품레코드 지우기결과값 : "+productdelruselt);
 			//상품 테이블 / 이미지 지우기 코드끝
 			
-			return "시발";
+			return "호잇";
 		}
 		@RequestMapping("admin_view/adminorder.do")
 	      public Map adminorder(String o_name,String select) {
@@ -298,16 +291,7 @@ public class AdminController {
 			System.out.println(gradeselect);
 			
 			List<UserVO> list = userService.userSerach(keyselects,accountsearch,rankselect,gradeselect);
- 			
-//			for(UserVO data : list) {
-//				System.out.println(data.getU_id());
-//				System.out.println(data.getU_height());
-//				System.out.println(data.getU_tel());
-//				
-//			}
 			System.out.println("슈방");
-//			Map map = new HashMap();
-//	         map.put("list", list);
 	         return list;			
 			
 		}

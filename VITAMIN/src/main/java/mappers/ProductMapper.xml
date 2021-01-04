@@ -199,7 +199,7 @@
 </select>
 
 
-<!-- 정렬 및 페이징 -->
+<!-- 검색 정렬 및 페이징 -->
 <select id="searchlist" parameterType="category" resultType="category">
 	select p_num, p_name, 
 		p_costprice, p_sellprice,

@@ -2,6 +2,7 @@ $(function(){
 	var flag = true ;
 
 var key = function() {
+//회원 검색때 키워드변경이나 엔터, 검색 클릭시 작동되는 ajax
 			$.ajax({
 					type : 'post',
 					async : true,
@@ -17,7 +18,6 @@ var key = function() {
 					success: function(list){
 								flag=null;
 								$('#accountlist').empty();
-								
 								for ( var count = 0; count < list.length ; count++){                
 					                console.log(list[count].u_rank );
 					                 var option = null;

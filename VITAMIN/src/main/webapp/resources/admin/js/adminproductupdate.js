@@ -214,10 +214,6 @@ $(function(){
 						        },
 						        error : function(err){
 						       			  console.log(err)
-<!-- 							   		 .fail(function(jqXHR, textStatus){ -->
-<!-- 							        console.log('서버 에러', '서버에서 문제가 발생하였습니다.', 'error') -->
-<!-- 							        console.log("jqXHR = " + jqXHR); -->
-<!-- 							        console.log("textStatus = " + textStatus); -->
 						        }
 						    });					
 				//product update ajax 전송 끝

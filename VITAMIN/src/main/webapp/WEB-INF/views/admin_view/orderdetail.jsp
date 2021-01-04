@@ -47,18 +47,6 @@
 							href="adminorder.do"> <i class="fas fa-list-alt"></i> order <span
 								class="sr-only">(current)</span>
 						</a></li>
-						<!-- 						<li class="nav-item dropdown"><a -->
-						<!-- 							class="nav-link dropdown-toggle" href="#" id="navbarDropdown" -->
-						<!-- 							role="button" data-toggle="dropdown" aria-haspopup="true" -->
-						<!-- 							aria-expanded="false"> <i class="fas fa-chart-bar"></i> <span> -->
-						<!-- 									Chart <i class="fas fa-angle-down"></i> -->
-						<!-- 							</span> -->
-						<!-- 						</a> -->
-						<!-- 							<div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-						<!-- 								<a class="dropdown-item" href="#">Daily Chart</a> <a -->
-						<!-- 									class="dropdown-item" href="#">Weekly Chart</a> <a -->
-						<!-- 									class="dropdown-item" href="#">Yearly Chart</a> -->
-						<!-- 							</div></li> -->
 						<li class="nav-item"><a class="nav-link"
 							href="products.do?category=아령,덤벨"> <i
 								class="fas fa-shopping-cart"></i> Products
