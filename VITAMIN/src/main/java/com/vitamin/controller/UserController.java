@@ -46,6 +46,10 @@ public class UserController {
 	List<Integer> num = new ArrayList<Integer>();
 	List<String> opnum = new ArrayList<String>();
 
+	
+	/*
+	 * 장바구니에 물건을 담는 코드 옵션이 있을 때와 없을 경우를 구분했다.
+	 */
 	@RequestMapping("basketsave.do")
 	public void basket(int number, String opnum1, String opcount1, String opnum2, String opcount2, String opnum3,
 			String opcount3, String opnum4, String opcount4, String opnum5, String opcount5, String p_count,
@@ -140,6 +144,10 @@ public class UserController {
 		}
 	}
 
+	
+	/*
+	 * 장바구니를 비우는 코드
+	 */
 	@RequestMapping("basketdelete.do")
 	public String delete(HttpSession session) {
 		if (session.getAttribute("id") != null) {
@@ -161,6 +169,11 @@ public class UserController {
 		return "basket";
 	}
 
+	
+	/*
+	 * 로그인과 BMI와 Black list를 구하는 코드
+	 * 로그인 시 세션에 저장된 상품이 db에 저장되게 된다.
+	 */
 	@RequestMapping("log.do")
 	public String login(UserVO vo, HttpSession session, Model m) {
 
@@ -239,6 +252,10 @@ public class UserController {
 		}
 	}
 
+	
+	/*
+	 * 로그아웃 코드 세션에 담긴 장바구니가 비워짐
+	 */
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -251,6 +268,9 @@ public class UserController {
 		return "homepage";
 	}
 
+	/*
+	 * 장바구니에 가게 되며 장바구니 목록이 보여짐
+	 */
 	@RequestMapping("basket.do")
 	public void basket(HttpSession session) {
 		if (session.getAttribute("id") != null) {
@@ -291,6 +311,11 @@ public class UserController {
 		}
 	}
 
+	
+	/*
+	 * 주문서 코드
+	 * 옵션이 있는 상품과 없는 상품 구분하여 코딩
+	 */
 	@RequestMapping("orders.do")
 	public Map orders(int number, String opnum1, String opcount1, String opnum2, String opcount2, String opnum3,
 			String opcount3, String opnum4, String opcount4, String opnum5, String opcount5, String p_count,
@@ -342,6 +367,9 @@ public class UserController {
 		return map;
 	}
 
+	/*
+	 * 장바구니에 담긴 물건이 주문서로 가는 코드
+	 */
 	@RequestMapping("modelorder.do")
 	public ModelAndView orderslist(HttpSession session) {
 		ModelAndView view = new ModelAndView();
@@ -355,6 +383,12 @@ public class UserController {
 		return view;
 	}
 
+	/*
+	 * 결제되는 코드이다
+	 * 장바구니로 들어왔는지 그냥 주문인지 옵션이 있는지 없는지를 구분하여 짰고
+	 * 등급에 따른 적립률을 계산하여 추가하며 지금까지 산 총 금액으로 등급을 올려줄지
+	 * 판단하여 올려준다.
+	 */
 	@RequestMapping("pay.do")
 	public void pay(String ocheck, String number, String opnum1, String opcount1, String opnum2, String opcount2,
 			String opnum3, String opcount3, String opnum4, String opcount4, String opnum5, String opcount5,

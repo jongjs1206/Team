@@ -28,14 +28,21 @@ public class GoodsController {
 	@Autowired
 	private ProductService productService;
 	
+	/*
+	 * 상품리스트로 가는 코드
+	 */
 	@RequestMapping("goods.do")
 	public Map menu(String menu,String category,String search,String hs,String page) {
 		ProductVO vo = new ProductVO();
 		CategoryjoinVO cvo = new CategoryjoinVO();
+		
+		//페이징 코드
 		vo.setP_costprice((Integer.parseInt(page)-1)*15+1);
 		cvo.setP_costprice((Integer.parseInt(page)-1)*15+1);
 		vo.setP_sellprice((Integer.parseInt(page)-1)*15+15);
 		cvo.setP_sellprice((Integer.parseInt(page)-1)*15+15);
+		
+		//남는 VO변수에 정렬할 값을 구분시킴
 		if("a".equals(search)) {
 			vo.setP_content("a");
 			cvo.setP_content("a");
@@ -46,6 +53,8 @@ public class GoodsController {
 			vo.setP_content("c");	
 			cvo.setP_content("c");	
 		}
+		
+		//hs는 검색한 값이 들어온다. 남는 VO변수에 넣었다.
 		if(hs!=null) {
 			cvo.setP_postdate(hs);
 			List<CategoryjoinVO> list = goodsService.searchlist(cvo);
@@ -75,6 +84,10 @@ public class GoodsController {
 			}
 		}
 	}
+	
+	/*
+	 * 상품 상세보기로 가는 코드
+	 */
 	@RequestMapping("goods_detail.do")
 	public Map detail(int number) {
 		List<OptionVO> option = goodsService.goodviewOption(number);
