@@ -3,6 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
 
+<!-- 옵션 리스트 넣기 -->
 	<insert parameterType="list" id="insertproductoption">
 
 		<!-- <foreach item="list" collection="list" separator=" ; " > -->
@@ -18,6 +19,7 @@
 		) A
 	</insert>
 	
+	<!-- 서브 이미지 주소 삭제 -->
 		<delete parameterType="list" id = "deletesubimage">
 		
 		DELETE FROM img 
@@ -28,15 +30,19 @@
 		</where>
 
 	</delete>
+	
+	<!-- 상품 옵션 삭제 -->
 	<delete parameterType = "string" id = "onedeloptions">
 		DELETE FROM productoptions WHERE p_num = #{item}
 	</delete>
 	
+	<!-- 상품 수정 -->
 	<update parameterType = "product" id = "updateproductval">
 	UPDATE product SET p_name = #{p_name},p_costprice = #{p_costprice},p_discountrate = #{p_discountrate}, p_sellprice = #{p_sellprice}, p_stock= #{p_stock}, p_content = #{p_content} , ca_smallcate = #{ca_smallcate} WHERE p_num = #{p_num}
 	
 	</update>
 	
+	<!-- 서브 이미지 등록 -->
 	<insert parameterType="hashmap" id="insertsubimage">
 		insert into img(i_num,i_imgpath,p_num) select SEQ_i_num_img.nextval,
 		A.* from(
@@ -49,7 +55,8 @@
 		<!-- </foreach> -->
 		<!-- insert into img(i_num,i_imgpath,p_num) values (SEQ_i_num_img.nextval,'존나화난다.',#{vo.p_num}); -->
 	</insert>
-
+	
+<!--상품 등록 -->
 	<insert parameterType="product" id="insertproduct">
 		<selectKey resultType="java.lang.String" order="BEFORE"
 			keyProperty="p_num">SELECT SEQ_p_num_product.nextval FROM DUAL </selectKey>
@@ -58,6 +65,7 @@
 		(#{p_num},#{p_name},#{p_costprice},#{p_discountrate},#{p_sellprice},sysdate,#{p_content},#{p_stock},#{p_mainimage},#{ca_smallcate})
 	</insert>
 
+<!-- 카테고리 이름 불러오기 -->
 	<select id="categoryget" parameterType="string"
 		resultType="string">
 		<!-- SELECT * -->
@@ -66,6 +74,7 @@
 		select ca_smallcate from category where ca_largecate = #{largecate}
 	</select>
 
+<!-- 상품 불러오기 및 정렬,페이징 -->
 	<select id='goodslist' resultType="product">
 		select p_num,p_name,p_costprice,p_discountrate,p_sellprice,p_postdate 
 		,p_content,p_stock,p_mainimage,ca_smallcate 
@@ -89,13 +98,14 @@
 		)) <![CDATA[ where rnum  >=  #{p_costprice} and rnum<= #{p_sellprice} ]]>
 	</select>
 	
+	<!-- 상품 불러오기 -->
 	<select id = "productlist" resultType="product">
 	select p_num,p_name,p_costprice,p_discountrate,p_sellprice,p_postdate 
 		,p_content,p_stock,p_mainimage,ca_smallcate 
     	from product where ca_smallcate = #{ca_smallcate} order by p_num desc
 	</select>
 	
-
+	<!-- 카테고리 불러오기 페이징 및 정렬 -->
 	<select id='list' parameterType='category' resultType="category">
 		select p_num, p_name, 
 		p_costprice, p_sellprice,
@@ -133,11 +143,13 @@
 		)) <![CDATA[ where rnum  >=  #{p_costprice} and rnum<= #{p_sellprice} ]]>
 	</select>
 
+	<!-- 상품 갯수 세기 -->
 	<select id="count" resultType="int">
 		select count(*) from product where
 		ca_smallcate = #{ca_smallcate}
 	</select>
-
+	
+	<!-- 상품 갯수 세기 -->
 	<select id="count2" resultType="int">
 		select count(*) from product p
 		inner join category c on p.ca_smallcate =
@@ -145,33 +157,49 @@
 		where
 		c.ca_largecate = #{ca_largecate}
 	</select>
+	
+	<!-- 서브이미지 주소 불러오기 -->
 	<select id="getfilepath" parameterType="int" resultType="string">
 		select i_imgpath from img where p_num = #{data}
 	</select>
 	
+	<!-- 이미지 삭제 -->
 	<delete id="deleteimage" parameterType="int">
 		DELETE FROM img WHERE p_num = #{data}
 	</delete>
+	
+	<!-- 옵션 삭제 -->
 	<delete id="deleteoption" parameterType="int">
 		DELETE FROM productoptions WHERE p_num = #{data}
 	</delete>
+	
+	<!-- 상품 메인이미지 주소 불러오기 -->
 	<select id="getmainfilepath" parameterType="int" resultType="string">
 		select p_mainimage from product where p_num = #{data}
 	</select>
+	
+	<!-- 상품삭제 -->
 	<delete id="deleteproduct" parameterType="int">
 		DELETE FROM product WHERE p_num = #{data}
 	</delete>
+
+<!-- 옵션 불러오기 -->
 	<select id="option" parameterType="int" resultType="option">
 	select * from productOptions where p_num=#{p_num}
 </select>
 
+<!-- 상품 상세 불러오기 -->
 <select id="goodview" parameterType="int" resultType="product">
 	select * from product where p_num=#{p_num}
 </select>
+
+<!-- 서브 이미지 불러오기 -->
 <select id="subimage" parameterType="int" resultType="psimg">
 	select * from img where p_num= #{p_num} order by i_num
 </select>
 
+
+<!-- 검색 정렬 및 페이징 -->
 <select id="searchlist" parameterType="category" resultType="category">
 	select p_num, p_name, 
 		p_costprice, p_sellprice,
@@ -211,6 +239,7 @@
 		
 </select>
 
+<!-- 검색 상품 갯수 세기 -->
 <select id="searchcount" parameterType="category" resultType="int">
 		select count(*) as count from product p  
 		inner join category c on p.ca_smallcate =  
@@ -219,6 +248,8 @@
 		 or p.p_name like '%${p_postdate}%'
 </select>
 
+
+<!-- 주문 카테고리별 검색 -->
 <select id="orderlist" parameterType="category" resultType="category">
 		select o.o_num as o_num,u.u_id as u_id, u.u_name as u_name,p.p_name as p_name,po.po_optionname as po_optionname,
 o.o_tel as o_tel,o.o_add as o_add, o.o_date as o_date, o.o_delivery as o_delivery
@@ -240,29 +271,43 @@ left join productoptions po on o.po_optionnum=po.po_optionnum
 		</choose>
 order by o.o_date desc
 </select>
-	<update id = "changemainimage" parameterType = "product">
+
+<!-- 메인 이미지 변경 -->
+<update id = "changemainimage" parameterType = "product">
 	UPDATE product SET p_mainimage = #{p_mainimage} WHERE p_num = #{p_num}
-	</update>
+</update>
+
+<!-- 옵션 검색 -->
 <select id="optioninfo" parameterType="string" resultType="option">
 	SELECT * FROM productoptions WHERE po_optionnum = #{po_optionnum}
 </select>
 
+<!-- 주문 추가 -->
 <insert id="insertorder" parameterType="category">
 	insert into orders values(sq_orders.nextval,#{u_id},#{p_num},#{o_tel},#{o_add},#{o_count},'준비중',sysdate,#{o_price},#{po_optionnum},#{o_name} )
 </insert>
 
+<!-- 등급 업+적립금 추가 -->
 <update id="supdategrade" parameterType="string">
 	update usertable set u_grade='SILVER',u_mileage=u_mileage+10000 where u_id=#{id}
 </update>
+
+<!-- 등급 업+적립금 추가 -->
 <update id="gupdategrade" parameterType="string">
 	update usertable set u_grade='GOLD',u_mileage=u_mileage+30000 where u_id=#{id}
 </update>
+
+<!-- 등급 업+적립금 추가 -->
 <update id="vupdategrade" parameterType="string">
 	update usertable set u_grade='VIP',u_mileage=u_mileage+50000 where u_id=#{id}
 </update>
+
+<!-- 마일리지 추가 -->
 <update id="addmile" parameterType="category">
 	update usertable set u_mileage=u_mileage+#{o_price} where u_id=#{u_id}
 </update>
+
+<!-- 마일리지 차감 -->
 <update id="submile" parameterType="category">
 	update usertable set u_mileage=u_mileage-#{u_mileage} where u_id=#{u_id}
 </update>
